@@ -129,6 +129,19 @@ body {
     background: #ddd;
 }
 
+.history-tasks-container {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.history-task-item::before {
+    content: '├─ ';
+}
+
+.history-task-item:last-child:before {
+    content: '└─ ';
+}
+
 .button {
     width: 80px;
     background-color: #eee;
