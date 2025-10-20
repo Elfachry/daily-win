@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Win</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="home-page-container" class="container">
+        <div id="home-content-container">
+            <span id="label" class="hidden">DailyWin</span>
+            <h1 id="title">What’s your win for today?</h1>
+            <p id="subtitle">Press Enter to add another</p>
+            <div id="input-container">
+                <div id="input-list-container">
+                    <input type="text" placeholder="Today I’ll…" class="input-box">
+                </div>
+                <button id="start-button" class="button hidden">Claim Win</button>
+            </div>
+        </div>
+    </div>
+    <div id="todo-page-container" class="container hidden">
+        <div id="todo-content-container">
+            <h1>To-do</h1>
+            <div id="todo-list-container"></div>
+            <button id="todo-done-button" class="button">Done</button>
+        </div>
+    </div>
+    <div id="mood-page-container" class="container hidden">
+        <div id="mood-content-container">
+            <h1>Today’s productivity level?</h1>
+            <div id="mood-selector-container">
+                <label class="mood-selector">
+                    <input type="radio" name="mood" value="low">
+                    low
+                </label>
+                <label class="mood-selector">
+                    <input type="radio" name="mood" value="normal">
+                    normal
+                </label>
+                <label class="mood-selector">
+                    <input type="radio" name="mood" value="awesome">
+                    awesome
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="hours-page-container" class="container hidden">
+        <div id="hours-content-container">
+            <h1>Work duration?</h1>
+            <div id="hours-display">0h</div>
+            <div id="hours-input-container">
+                <input type="range" min="0" max="16" step="1" value="0" id="hours-slider">
+                <div id="hours-labels">
+                    <span>0h</span>
+                    <span>8h</span>
+                    <span>16h</span>
+                </div>
+            </div>
+            <button id="hours-page-button" class="button">done</button>
+        </div>
+    </div>
+    <div id="history-page-container" class="container hidden">
+        <div id="history-content-container"></div>
+    </div>
+</body>
+</html>

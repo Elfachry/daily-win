@@ -1,0 +1,150 @@
+body {
+    font-family: "arial", sans-serif;
+    margin: 0;
+}
+
+#home-page-container {
+    align-items: flex-start;
+}
+
+#home-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+#home-content-container #label,
+#home-content-container #title,
+#home-content-container #subtitle {
+    margin: 0;
+}
+
+#home-content-container #label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#home-content-container #title {
+    font-size: 40px;
+    margin-top: 40px;
+}
+
+#home-content-container #subtitle {
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+#input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 64px;
+}
+
+#input-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#todo-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mood-selector-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 16px;
+}
+
+#hours-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#hours-display {
+    font-size: 64px;
+    margin-bottom: 24px;
+}
+
+#hours-input-container {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+#hours-slider {
+    width: 100%;
+}
+
+#hours-labels {
+    color: gray;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.input-box {
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    background-color: #eee;
+}
+
+.input-box:focus {
+    outline: none;
+}
+
+.mood-selector {
+  background: #eee;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  user-select: none;
+  font-weight: 500;
+}
+
+.mood-selector input[type='radio'] {
+    display: none;
+}
+
+.mood-selector:hover {
+    background: #ddd;
+}
+
+.button {
+    width: 80px;
+    background-color: #eee;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 24px;
+}
+
+.button:hover {
+    background: #ddd;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
