@@ -12,6 +12,16 @@ const startButton = document.getElementById('start-button');
 const hoursSlider = document.getElementById('hours-slider');
 const hoursDisplay = document.getElementById('hours-display');
 
+window.addEventListener('DOMContentLoaded', () => {
+    const todayTasks = localStorage.getItem('todayTasks');
+
+    if (todayTasks) {
+        openTodoPage();
+    } else {
+        homePage.classList.remove('hidden');
+    }
+});
+
 inputListContainer.addEventListener('keydown', (e) => {
     const inputs = Array.from(inputListContainer.querySelectorAll('.input-box'));
     const currentInput = e.target;
