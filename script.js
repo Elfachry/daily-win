@@ -5,22 +5,10 @@ const hoursPage = document.getElementById('hours-page-container');
 const historyPage = document.getElementById('history-page-container');
 const historyContainer = document.getElementById('history-content-container');
 const inputListContainer = document.getElementById('input-list-container');
-const todoListContainer = document.getElementById('todo-list-container');
 const hoursPageButton = document.getElementById('hours-page-button');
-const todoDoneButton = document.getElementById('todo-done-button');
 const startButton = document.getElementById('start-button');
 const hoursSlider = document.getElementById('hours-slider');
 const hoursDisplay = document.getElementById('hours-display');
-
-window.addEventListener('DOMContentLoaded', () => {
-    const todayTasks = localStorage.getItem('todayTasks');
-
-    if (todayTasks) {
-        openTodoPage();
-    } else {
-        homePage.classList.remove('hidden');
-    }
-});
 
 inputListContainer.addEventListener('keydown', (e) => {
     const inputs = Array.from(inputListContainer.querySelectorAll('.input-box'));
@@ -81,47 +69,8 @@ function openTodoPage() {
     homePage.classList.add('hidden');
     todoPage.classList.remove('hidden');
 
-    loadTodoLists();
+    setTimeout(openMoodPage, 3000);
 }
-
-function loadTodoLists() {
-    let savedData = localStorage.getItem("todayTasks");
-    let todolists = JSON.parse(savedData) || [];
-
-    todoListContainer.innerHTML = '';
-
-    todolists.forEach(task => {
-        const todoItem = document.createElement('div');
-        todoItem.classList.add('todo-item');
-
-        const checkBox = document.createElement('input');
-        checkBox.type = 'checkbox';
-
-        const taskText = document.createElement('span');
-        taskText.textContent = task;
-
-        todoItem.appendChild(checkBox);
-        todoItem.appendChild(taskText);
-        todoListContainer.appendChild(todoItem);
-    });
-}
-
-todoDoneButton.addEventListener('click', () => {
-    const todoItems = document.querySelectorAll('.todo-item');
-    const todoProgress = {};
-
-    todoItems.forEach(item => {
-        const checkBox = item.querySelector('input[type="checkbox"]');
-        const taskText = item.querySelector('span').textContent;
-
-        todoProgress[taskText] = checkBox.checked;
-    });
-
-    localStorage.setItem('todoProgress', JSON.stringify(todoProgress));
-    console.log(todoProgress);
-
-    openMoodPage();
-});
 
 function openMoodPage() {
     todoPage.classList.add('hidden');
@@ -163,29 +112,24 @@ hoursPageButton.addEventListener('click', () => {
 });
 
 function saveToHistory() {
-    const todayTasks = JSON.parse(localStorage.getItem('todayTasks')) || [];
-    const todoProgress = JSON.parse(localStorage.getItem('todoProgress')) || {};
+    const todayTasks = JSON.parse(localStorage.getItem('todayTasks'));
     const mood = localStorage.getItem('todayMood');
     const hours = localStorage.getItem('todayHours');
 
     const todayEntry = {
         date: new Date().toISOString().split('T')[0],
-        tasks: todayTasks.map(task => ({
-            text: task,
-            completed: todoProgress[task] || false
-        })),
+        tasks: todayTasks,
         mood: mood,
         hours: hours
     };
 
     let history = JSON.parse(localStorage.getItem('history')) || [];
 
-    history.unshift(todayEntry)
+    history.unshift(todayEntry);
 
     localStorage.setItem('history', JSON.stringify(history));
 
     localStorage.removeItem('todayTasks');
-    localStorage.removeItem('todoProgress');
     localStorage.removeItem('todayMood');
     localStorage.removeItem('todayHours');
 
@@ -237,15 +181,7 @@ function renderHistoryPage() {
         day.tasks.forEach(task => {
             const taskItem = document.createElement('li');
             taskItem.classList.add('history-task-item');
-
-            const checkmark = task.completed? '✓ ' : '✗ ';
-            taskItem.textContent = checkmark + task.text;
-
-            if (!task.completed) {
-                taskItem.style.opacity = 0.5;
-                taskItem.style.textDecoration = 'line-through';
-            }
-
+            taskItem.textContent = task;
             tasksList.appendChild(taskItem);
         });
 
