@@ -3,6 +3,20 @@ body {
     margin: 0;
 }
 
+.nav-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 12px;
+    border: none;
+    background: white;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    color: gray;
+}
+
 #home-page-container {
     align-items: flex-start;
 }
@@ -49,7 +63,7 @@ body {
     gap: 4px;
 }
 
-#todo-content-container {
+#congrats-content-container {
     display: flex;
     flex-direction: column;
     align-items: center;

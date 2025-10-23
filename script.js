@@ -1,5 +1,5 @@
 const homePage = document.getElementById('home-page-container');
-const todoPage = document.getElementById('todo-page-container');
+const congratsPage = document.getElementById('congrats-page-container');
 const moodPage = document.getElementById('mood-page-container');
 const hoursPage = document.getElementById('hours-page-container');
 const historyPage = document.getElementById('history-page-container');
@@ -9,6 +9,7 @@ const hoursPageButton = document.getElementById('hours-page-button');
 const startButton = document.getElementById('start-button');
 const hoursSlider = document.getElementById('hours-slider');
 const hoursDisplay = document.getElementById('hours-display');
+const navButton = document.getElementById('nav-button');
 
 inputListContainer.addEventListener('keydown', (e) => {
     const inputs = Array.from(inputListContainer.querySelectorAll('.input-box'));
@@ -62,18 +63,20 @@ startButton.addEventListener('click', () => {
     localStorage.setItem("todayTasks", JSON.stringify(todayTasks));
     console.log("saved", todayTasks);
 
-    openTodoPage();
+    openCongratsPage();
 });
 
-function openTodoPage() {
+function openCongratsPage() {
     homePage.classList.add('hidden');
-    todoPage.classList.remove('hidden');
+    congratsPage.classList.remove('hidden');
+    navButton.classList.add('hidden');
+    navButton.textContent = 'Home';
 
     setTimeout(openMoodPage, 3000);
 }
 
 function openMoodPage() {
-    todoPage.classList.add('hidden');
+    congratsPage.classList.add('hidden');
     moodPage.classList.remove('hidden');
 
     moodPageSelect()
@@ -141,6 +144,7 @@ function saveToHistory() {
 function openHistoryPage() {
     hoursPage.classList.add('hidden');
     historyPage.classList.remove('hidden');
+    navButton.classList.remove('hidden');
 
     renderHistoryPage();
 }
@@ -189,4 +193,26 @@ function renderHistoryPage() {
         dayDiv.appendChild(tasksList);
         historyContainer.appendChild(dayDiv);
     });
+}
+
+navButton.addEventListener('click', () => {
+    console.log('button nav');
+    currentText = navButton.textContent;
+
+    if (currentText === 'History') {
+        homePage.classList.add('hidden');
+        historyPage.classList.remove('hidden');
+        navButton.textContent = 'Home';
+        renderHistoryPage();
+    } else {
+        historyPage.classList.add('hidden');
+        homePage.classList.remove('hidden');
+        navButton.textContent = 'History';
+        resetHomePage();
+    }
+});
+
+function resetHomePage() {
+    inputListContainer.innerHTML = `<input type="text" placeholder="Today I'll…" class="input-box">`;
+    startButton.classList.add('hidden');
 }
